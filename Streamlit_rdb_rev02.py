@@ -2,9 +2,6 @@ import os
 import streamlit as st
 import pandas as pd
 import numpy as np
-import gspread
-from google.oauth2.service_account import Credentials
-from gspread_dataframe import set_with_dataframe
 from dotenv import load_dotenv
 from geopy.geocoders import Nominatim
 import folium
@@ -21,7 +18,7 @@ import urllib.parse  # URLエンコード、デコード
 load_dotenv()
 
 GOOGLEMAPS_API_KEY = os.getenv("GOOGLEMAPS_API_KEY")
-
+#st.secrets["OpenAI_key"]
 
 # セッション状態の初期化
 if 'show_all' not in st.session_state:
@@ -256,15 +253,16 @@ def main():
         else:
             display_search_results(st.session_state.get('filtered_df2', filtered_df2))  # 地図上の物件のみ
 
-    
 
     property_list = filtered_df['名称'].tolist()
+#    property_list = filtered_df['名称'].drop_duplicates().tolist()
+#    property_list = st.session_state['filtered_df']['名称'].drop_duplicates().tolist()
     selected_property = st.sidebar.selectbox("候補物件を選択してください", property_list)
-        
+
     if selected_property:
     # 選択された物件に一致する行をDataFrameから取得
         property_info = filtered_df[filtered_df['名称'] == selected_property].iloc[0]
-        st.write(f"選択された物件: {selected_property}")
+        st.sidebar.write(f"選択された物件: {selected_property}")
         #st.dataframe(property_info)
         #home_address=property_info['アドレス']
         #home_station = property_info['アクセス1駅名']
@@ -287,8 +285,11 @@ def main():
         transit_results = search_transit_times(home_stations, destinations)
         st.write("各出発駅から目的地までの移動時間", transit_results)
         
-    else:
-        st.sidebar.write("検索ボタンを押してください")
+#    else:
+#           st.sidebar.write("検索ボタンを押してください")
+
+
+
 
 #サイドバー
 df2 = load_data_from_DB2()
