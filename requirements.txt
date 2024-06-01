@@ -3,3 +3,4 @@ geopy
 folium
 streamlit_folium
 googlemaps
+beautifulsoup4
