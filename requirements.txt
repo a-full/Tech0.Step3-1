@@ -4,4 +4,3 @@ folium
 streamlit_folium
 googlemaps
 beautifulsoup4
-sqlite3
