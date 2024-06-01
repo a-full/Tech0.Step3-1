@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import pandas as pd
 import numpy as np
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from geopy.geocoders import Nominatim
 import folium
 from streamlit_folium import folium_static
@@ -15,10 +15,10 @@ import urllib.parse  # URLエンコード、デコード
 
 
 # 環境変数の読み込み
-load_dotenv()
+#load_dotenv()
 
-GOOGLEMAPS_API_KEY = os.getenv("GOOGLEMAPS_API_KEY")
-#st.secrets["OpenAI_key"]
+#GOOGLEMAPS_API_KEY = os.getenv("GOOGLEMAPS_API_KEY")
+GOOGLEMAPS_API_KEY = st.secrets["GOOGLEMAPS_API_KEY"]
 
 # セッション状態の初期化
 if 'show_all' not in st.session_state:
