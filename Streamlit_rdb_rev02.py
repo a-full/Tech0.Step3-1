@@ -259,10 +259,10 @@ def main():
 #    property_list = st.session_state['filtered_df']['名称'].drop_duplicates().tolist()
     selected_property = st.sidebar.selectbox("候補物件を選択してください", property_list)
 
-    if selected_property:
+    if st.sidebar.button("周辺施設を検索"):
     # 選択された物件に一致する行をDataFrameから取得
         property_info = filtered_df[filtered_df['名称'] == selected_property].iloc[0]
-        st.sidebar.write(f"選択された物件: {selected_property}")
+        #st.sidebar.write(f"選択された物件: {selected_property}")
         #st.dataframe(property_info)
         #home_address=property_info['アドレス']
         #home_station = property_info['アクセス1駅名']
